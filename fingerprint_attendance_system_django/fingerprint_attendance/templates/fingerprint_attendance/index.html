@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Fingerprint Attendance System</title>
+</head>
+<body>
+    <h1>Fingerprint Attendance System</h1>
+
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+
+    {% if result_message %}
+        <p class="result">{{ result_message }}</p>
+    {% endif %}
+
+    <form action="{% url 'enroll' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Enroll</button>
+    </form>
+
+    <form action="{% url 'verify' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Verify</button>
+    </form>
+</body>
+</html>
